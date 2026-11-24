@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SANCO IT Tickets</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;background:#0b3a8f;color:#fff;text-align:center;padding:14vh 20px}.b{display:none;margin-top:18px;padding:10px 18px;border-radius:10px;background:#fff;color:#0b3a8f;font-weight:700;text-decoration:none}</style></head><body>
+<h2>SANCO IT Ticketing</h2><p id="m">Opening the system...</p><a id="l" class="b" href="#">Open now</a>
+<script>
+var U="https://api.github.com/repos/sancogroupit/sancogroupit.github.io/contents/link.json";
+function go(d){if(!d||!/^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/.test(d.url||'')){fail();return}
+ var l=document.getElementById('l');l.href=d.url+'/';l.style.display='inline-block';document.getElementById('m').textContent='Opening '+d.url;setTimeout(function(){location.replace(d.url+'/')},700)}
+function fail(){document.getElementById('m').textContent='The server is starting or reconnecting. Trying again in 10 seconds...';setTimeout(load,10000)}
+function load(){
+ fetch(U+'?t='+Date.now(),{headers:{'Accept':'application/vnd.github.raw'},cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(go).catch(function(){
+  fetch('link.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(go).catch(fail)})}
+load();
+</script></body></html>
